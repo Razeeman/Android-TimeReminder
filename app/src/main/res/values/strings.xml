@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">TimeReminder</string>
+
+    <!-- Top and bottom texts on main view -->
+    <string name="header_label">Time you have left</string>
+    <string name="footer_label">Spend it wisely</string>
+
+    <!-- Time labels on the main view -->
+    <string name="seconds_label">seconds</string>
+    <string name="minutes_label">minutes</string>
+    <string name="hours_label">hours</string>
+    <string name="days_label">days</string>
+    <string name="years_label">years</string>
 </resources>

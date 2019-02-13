@@ -51,6 +51,12 @@ public class MainFragment extends Fragment implements MainContract.View {
         mPresenter.start();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.stop();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -75,8 +81,13 @@ public class MainFragment extends Fragment implements MainContract.View {
      * @param timeNow String to put onto current time text view.
      */
     @Override
-    public void updateCurrentTime(String timeNow) {
-        mTimeNowTextView.setText(timeNow);
+    public void updateCurrentTime(final String timeNow) {
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mTimeNowTextView.setText(timeNow);
+            }
+        });
     }
 
     /**
@@ -88,13 +99,20 @@ public class MainFragment extends Fragment implements MainContract.View {
      * @param y String for number of years.
      */
     @Override
-    public void updateTimes(String s, String m, String h, String d, String y) {
-        int color = getActivity().getResources().getColor(R.color.colorAccent);
+    public void updateTimes(final String s, final String m, final String h,
+                            final String d, final String y) {
+        final int color = getActivity().getResources().getColor(R.color.colorAccent);
 
-        mSecondsLeftTextView.setText(AppStringUtils.recolorLastDigit(color, s));
-        mMinutesLeftTextView.setText(m);
-        mHoursLeftTextView.setText(h);
-        mDaysLeftTextView.setText(d);
-        mYearsLeftTextView.setText(y);
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mSecondsLeftTextView.setText(AppStringUtils.recolorLastDigit(color, s));
+                mMinutesLeftTextView.setText(m);
+                mHoursLeftTextView.setText(h);
+                mDaysLeftTextView.setText(d);
+                mYearsLeftTextView.setText(y);
+            }
+        });
+
     }
 }

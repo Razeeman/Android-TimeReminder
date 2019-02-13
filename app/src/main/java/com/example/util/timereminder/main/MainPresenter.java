@@ -4,6 +4,9 @@ import com.example.util.timereminder.data.prefs.PreferencesHelper;
 import com.example.util.timereminder.utils.AppStringUtils;
 import com.example.util.timereminder.utils.AppTimeUtils;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Receives commands from UI, retrieves data from preferences and updates the UI.
  */
@@ -11,6 +14,8 @@ public class MainPresenter implements MainContract.Presenter {
 
     private final PreferencesHelper mPreferencesHelper;
     private final MainContract.View mMainFragment;
+
+    private Timer mTimer;
 
     public MainPresenter(PreferencesHelper preferencesHelper, MainContract.View mainFragment) {
         mPreferencesHelper = preferencesHelper;
@@ -20,7 +25,22 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void start() {
-        loadTimeData();
+        loadTimeData(); //TODO unnecessary?
+        mTimer = new Timer();
+        mTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                loadTimeData();
+            }
+        }, 0 ,1000);
+    }
+
+    @Override
+    public void stop() {
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer.purge();
+        }
     }
 
     /**

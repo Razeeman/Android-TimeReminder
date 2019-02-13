@@ -1,6 +1,7 @@
 package com.example.util.timereminder.main;
 
 import com.example.util.timereminder.data.prefs.PreferencesHelper;
+import com.example.util.timereminder.utils.AppStringUtils;
 import com.example.util.timereminder.utils.AppTimeUtils;
 
 /**
@@ -57,7 +58,7 @@ public class MainPresenter implements MainContract.Presenter {
      * @return        string representation of number of seconds.
      */
     private String getNumberOfSecondsString(long dateUTC) {
-        return String.valueOf(AppTimeUtils.getNumberOfSeconds(dateUTC));
+        return AppStringUtils.applyGroupingSeparator(AppTimeUtils.getNumberOfSeconds(dateUTC));
     }
 
     /**
@@ -67,7 +68,7 @@ public class MainPresenter implements MainContract.Presenter {
      * @return        string representation of number of minutes.
      */
     private String getNumberOfMinutesString(long dateUTC) {
-        return String.valueOf(AppTimeUtils.getNumberOfMinutes(dateUTC));
+        return AppStringUtils.applyGroupingSeparator(AppTimeUtils.getNumberOfMinutes(dateUTC));
     }
 
     /**
@@ -77,7 +78,7 @@ public class MainPresenter implements MainContract.Presenter {
      * @return        string representation of number of hours.
      */
     private String getNumberOfHoursString(long dateUTC) {
-        return String.valueOf(AppTimeUtils.getNumberOfHours(dateUTC));
+        return AppStringUtils.applyGroupingSeparator(AppTimeUtils.getNumberOfHours(dateUTC));
     }
 
     /**
@@ -87,7 +88,7 @@ public class MainPresenter implements MainContract.Presenter {
      * @return        string representation of number of days.
      */
     private String getNumberOfDaysString(long dateUTC) {
-        return String.valueOf(AppTimeUtils.getNumberOfDays(dateUTC));
+        return AppStringUtils.applyGroupingSeparator(AppTimeUtils.getNumberOfDays(dateUTC));
     }
 
     /**
@@ -97,7 +98,7 @@ public class MainPresenter implements MainContract.Presenter {
      * @return        string representation of number of years.
      */
     private String getNumberOfYearsString(long dateUTC) {
-        return String.valueOf(AppTimeUtils.getNumberOfYears(dateUTC));
+        return AppStringUtils.applyGroupingSeparator(AppTimeUtils.getNumberOfYears(dateUTC));
     }
 
 }

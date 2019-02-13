@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.util.timereminder.R;
+import com.example.util.timereminder.utils.AppStringUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -69,7 +70,7 @@ public class MainFragment extends Fragment implements MainContract.View {
     }
 
     /**
-     * Updates current time.
+     * Updates UI with current time.
      *
      * @param timeNow String to put onto current time text view.
      */
@@ -88,7 +89,9 @@ public class MainFragment extends Fragment implements MainContract.View {
      */
     @Override
     public void updateTimes(String s, String m, String h, String d, String y) {
-        mSecondsLeftTextView.setText(s);
+        int color = getActivity().getResources().getColor(R.color.colorAccent);
+
+        mSecondsLeftTextView.setText(AppStringUtils.recolorLastDigit(color, s));
         mMinutesLeftTextView.setText(m);
         mHoursLeftTextView.setText(h);
         mDaysLeftTextView.setText(d);

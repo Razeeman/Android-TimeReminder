@@ -1,6 +1,6 @@
 package com.example.util.timereminder.main;
 
-import com.example.util.timereminder.Utils.AppTimeUtils;
+import com.example.util.timereminder.utils.AppTimeUtils;
 
 public class MainPresenter implements MainContract.Presenter {
 

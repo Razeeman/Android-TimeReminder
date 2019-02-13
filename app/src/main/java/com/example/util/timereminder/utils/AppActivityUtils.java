@@ -1,4 +1,4 @@
-package com.example.util.timereminder.Utils;
+package com.example.util.timereminder.utils;
 
 import com.example.util.timereminder.main.MainFragment;
 

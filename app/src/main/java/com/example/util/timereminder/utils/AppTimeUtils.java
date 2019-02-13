@@ -1,4 +1,4 @@
-package com.example.util.timereminder.Utils;
+package com.example.util.timereminder.utils;
 
 import java.text.SimpleDateFormat;
 

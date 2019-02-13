@@ -3,7 +3,7 @@ package com.example.util.timereminder.main;
 import android.os.Bundle;
 
 import com.example.util.timereminder.R;
-import com.example.util.timereminder.Utils.AppActivityUtils;
+import com.example.util.timereminder.utils.AppActivityUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

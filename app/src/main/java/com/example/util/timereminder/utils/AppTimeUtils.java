@@ -1,6 +1,8 @@
 package com.example.util.timereminder.utils;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class AppTimeUtils {
 
@@ -33,6 +35,13 @@ public class AppTimeUtils {
     public static String getFullDateString(long dateInMilliseconds) {
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
         return df.format(dateInMilliseconds);
+    }
+
+    public static Date addYears(Date date, int years) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.YEAR, years);
+        return calendar.getTime();
     }
 
 }

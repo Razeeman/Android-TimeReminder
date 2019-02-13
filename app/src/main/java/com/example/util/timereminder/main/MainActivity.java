@@ -1,8 +1,10 @@
 package com.example.util.timereminder.main;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import com.example.util.timereminder.R;
+import com.example.util.timereminder.data.prefs.PreferencesHelper;
 import com.example.util.timereminder.utils.AppActivityUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,7 +30,10 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager(), mainFragment, R.id.content_frame);
         }
 
-        mMainPresenter = new MainPresenter(mainFragment);
+        PreferencesHelper preferencesHelper =
+                new PreferencesHelper(PreferenceManager.getDefaultSharedPreferences(this));
+
+        mMainPresenter = new MainPresenter(preferencesHelper, mainFragment);
     }
 
 }

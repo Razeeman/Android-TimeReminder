@@ -19,9 +19,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
+        // Setting up the toolbar.
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Creating the fragment.
         MainFragment mainFragment =
                 (MainFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
         if (mainFragment == null) {
@@ -30,9 +32,11 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager(), mainFragment, R.id.content_frame);
         }
 
+        // Creating the helper for app preferences.
         PreferencesHelper preferencesHelper =
                 new PreferencesHelper(PreferenceManager.getDefaultSharedPreferences(this));
 
+        // Creating the presenter.
         mMainPresenter = new MainPresenter(preferencesHelper, mainFragment);
     }
 

@@ -3,6 +3,9 @@ package com.example.util.timereminder.main;
 import com.example.util.timereminder.BasePresenter;
 import com.example.util.timereminder.BaseView;
 
+/**
+ * Contract between the view and the presenter.
+ */
 public interface MainContract {
 
     interface View extends BaseView<Presenter> {

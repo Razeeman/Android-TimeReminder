@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+/**
+ * Displays different times to certain date.
+ */
 public class MainFragment extends Fragment implements MainContract.View {
 
     private MainContract.Presenter mPresenter;
@@ -24,7 +27,7 @@ public class MainFragment extends Fragment implements MainContract.View {
     private TextView mYearsLeftTextView;
 
     public MainFragment() {
-
+        // Empty constructor.
     }
 
     public static MainFragment newInstance() {
@@ -53,6 +56,7 @@ public class MainFragment extends Fragment implements MainContract.View {
                              @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.main_fragment, container, false);
 
+        // Setting up the UI.
         mTimeNowTextView = root.findViewById(R.id.tv_time_now);
 
         mSecondsLeftTextView = root.findViewById(R.id.tv_seconds_left);
@@ -64,11 +68,24 @@ public class MainFragment extends Fragment implements MainContract.View {
         return root;
     }
 
+    /**
+     * Updates current time.
+     *
+     * @param timeNow String to put onto current time text view.
+     */
     @Override
     public void updateCurrentTime(String timeNow) {
         mTimeNowTextView.setText(timeNow);
     }
 
+    /**
+     * Updates UI with provided strings.
+     * @param s String for number of seconds.
+     * @param m String for number of minutes.
+     * @param h String for number of hours.
+     * @param d String for number of days.
+     * @param y String for number of years.
+     */
     @Override
     public void updateTimes(String s, String m, String h, String d, String y) {
         mSecondsLeftTextView.setText(s);

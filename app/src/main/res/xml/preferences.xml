@@ -3,50 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
-        android:title="General Settings"
+        android:title="@string/prefs_general_settings_title"
         app:iconSpaceReserved="false">
 
         <EditTextPreference
-            android:title="Life expectancy in your country"
-            android:key="life_expectancy"
+            android:title="@string/prefs_life_expectancy_title"
+            android:key="@string/prefs_life_expectancy_key"
             app:iconSpaceReserved="false"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="Visibility Settings"
+        android:title="@string/prefs_visual_settings_title"
         app:iconSpaceReserved="false">
 
         <CheckBoxPreference
-            android:title="Show minutes"
-            android:key="show_minutes"
-            android:defaultValue="true"
-            android:summaryOff="Hidden"
-            android:summaryOn="Shown"
+            android:title="@string/prefs_show_minutes_title"
+            android:key="@string/prefs_show_minutes_key"
+            android:defaultValue="@string/prefs_show_minutes_default"
+            android:summaryOff="@string/prefs_show_hidden"
+            android:summaryOn="@string/prefs_show_visible"
             app:iconSpaceReserved="false"/>
 
         <CheckBoxPreference
-            android:title="Show hours"
-            android:key="show_hours"
-            android:defaultValue="true"
-            android:summaryOff="Hidden"
-            android:summaryOn="Shown"
+            android:title="@string/prefs_show_hours_title"
+            android:key="@string/prefs_show_hours_key"
+            android:defaultValue="@string/prefs_show_hours_default"
+            android:summaryOff="@string/prefs_show_hidden"
+            android:summaryOn="@string/prefs_show_visible"
             app:iconSpaceReserved="false"/>
 
         <CheckBoxPreference
-            android:title="Show days"
-            android:key="show_days"
-            android:defaultValue="true"
-            android:summaryOff="Hidden"
-            android:summaryOn="Shown"
+            android:title="@string/prefs_show_days_title"
+            android:key="@string/prefs_show_days_key"
+            android:defaultValue="@string/prefs_show_days_default"
+            android:summaryOff="@string/prefs_show_hidden"
+            android:summaryOn="@string/prefs_show_visible"
             app:iconSpaceReserved="false"/>
 
         <CheckBoxPreference
-            android:title="Show years"
-            android:key="show_years"
-            android:defaultValue="true"
-            android:summaryOff="Hidden"
-            android:summaryOn="Shown"
+            android:title="@string/prefs_show_years_title"
+            android:key="@string/pres_show_years_key"
+            android:defaultValue="@string/prefs_show_years_default"
+            android:summaryOff="@string/prefs_show_hidden"
+            android:summaryOn="@string/prefs_show_visible"
             app:iconSpaceReserved="false"/>
 
     </PreferenceCategory>

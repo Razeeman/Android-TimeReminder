@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">TimeReminder</string>
 
+    <!-- - - - - - - - - - - -->
+    <!--Used in UI           -->
+    <!-- - - - - - - - - - - -->
+
     <!-- Top and bottom texts on main view -->
     <string name="header_label">Time you have left</string>
     <string name="footer_label">Spend it wisely</string>
@@ -11,4 +15,44 @@
     <string name="hours_label">hours</string>
     <string name="days_label">days</string>
     <string name="years_label">years</string>
+
+    <!-- Menu items -->
+    <string name="menu_settings">Settings</string>
+
+    <!-- - - - - - - - - - - -->
+    <!--Used by Preferences  -->
+    <!-- - - - - - - - - - - -->
+
+    <!-- Preference categories -->
+    <string name="prefs_general_settings_title">General Settings</string>
+    <string name="prefs_visual_settings_title">Visibility Settings</string>
+
+    <!-- Life expectancy preference -->
+    <string name="prefs_life_expectancy_title">Life expectancy in your country</string>
+    <string name="prefs_life_expectancy_key">life_expectancy</string>
+
+    <!-- Preference to show number of minutes -->
+    <string name="prefs_show_minutes_title">Show minutes</string>
+    <string name="prefs_show_minutes_key">show_minutes</string>
+    <string name="prefs_show_minutes_default">true</string>
+
+    <!-- Preference to show number of hours -->
+    <string name="prefs_show_hours_title">Show hours</string>
+    <string name="prefs_show_hours_key">show_hours</string>
+    <string name="prefs_show_hours_default">true</string>
+
+    <!-- Preference to show number of days -->
+    <string name="prefs_show_days_title">Show days</string>
+    <string name="prefs_show_days_key">show_days</string>
+    <string name="prefs_show_days_default">true</string>
+
+    <!-- Preference to show number of years -->
+    <string name="prefs_show_years_title">Show years</string>
+    <string name="pres_show_years_key">show_years</string>
+    <string name="prefs_show_years_default">true</string>
+
+    <!-- Checkbox summaries -->
+    <string name="prefs_show_hidden">Hidden</string>
+    <string name="prefs_show_visible">Shown</string>
+
 </resources>

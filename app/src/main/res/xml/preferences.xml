@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="General Settings"
+        app:iconSpaceReserved="false">
+
+        <EditTextPreference
+            android:title="Life expectancy in your country"
+            android:key="life_expectancy"
+            app:iconSpaceReserved="false"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="Visibility Settings"
+        app:iconSpaceReserved="false">
+
+        <CheckBoxPreference
+            android:title="Show minutes"
+            android:key="show_minutes"
+            android:defaultValue="true"
+            android:summaryOff="Hidden"
+            android:summaryOn="Shown"
+            app:iconSpaceReserved="false"/>
+
+        <CheckBoxPreference
+            android:title="Show hours"
+            android:key="show_hours"
+            android:defaultValue="true"
+            android:summaryOff="Hidden"
+            android:summaryOn="Shown"
+            app:iconSpaceReserved="false"/>
+
+        <CheckBoxPreference
+            android:title="Show days"
+            android:key="show_days"
+            android:defaultValue="true"
+            android:summaryOff="Hidden"
+            android:summaryOn="Shown"
+            app:iconSpaceReserved="false"/>
+
+        <CheckBoxPreference
+            android:title="Show years"
+            android:key="show_years"
+            android:defaultValue="true"
+            android:summaryOff="Hidden"
+            android:summaryOn="Shown"
+            app:iconSpaceReserved="false"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

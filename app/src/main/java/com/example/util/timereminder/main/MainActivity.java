@@ -1,14 +1,19 @@
 package com.example.util.timereminder.main;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.util.timereminder.R;
 import com.example.util.timereminder.data.prefs.PreferencesHelper;
+import com.example.util.timereminder.prefs.PrefsActivity;
 import com.example.util.timereminder.utils.AppActivityUtils;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
         // Setting up the toolbar.
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
 
         // Creating the fragment.
         MainFragment mainFragment =
@@ -40,4 +50,22 @@ public class MainActivity extends AppCompatActivity {
         mMainPresenter = new MainPresenter(preferencesHelper, mainFragment);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.menu_settings) {
+            Intent intent = new Intent(this, PrefsActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 }

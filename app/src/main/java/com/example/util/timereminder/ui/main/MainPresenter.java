@@ -1,4 +1,4 @@
-package com.example.util.timereminder.main;
+package com.example.util.timereminder.ui.main;
 
 import com.example.util.timereminder.data.prefs.PreferencesHelper;
 import com.example.util.timereminder.utils.AppStringUtils;

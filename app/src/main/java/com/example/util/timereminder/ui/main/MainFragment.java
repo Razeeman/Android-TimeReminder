@@ -1,4 +1,4 @@
-package com.example.util.timereminder.main;
+package com.example.util.timereminder.ui.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

@@ -1,4 +1,4 @@
-package com.example.util.timereminder.prefs;
+package com.example.util.timereminder.ui.prefs;
 
 import com.example.util.timereminder.BasePresenter;
 import com.example.util.timereminder.BaseView;

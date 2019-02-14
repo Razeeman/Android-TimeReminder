@@ -1,4 +1,4 @@
-package com.example.util.timereminder.main;
+package com.example.util.timereminder.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.MenuItem;
 
 import com.example.util.timereminder.R;
 import com.example.util.timereminder.data.prefs.PreferencesHelper;
-import com.example.util.timereminder.prefs.PrefsActivity;
+import com.example.util.timereminder.ui.prefs.PrefsActivity;
 import com.example.util.timereminder.utils.AppActivityUtils;
 
 import androidx.appcompat.app.ActionBar;

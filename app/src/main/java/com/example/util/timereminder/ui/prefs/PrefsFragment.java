@@ -1,4 +1,4 @@
-package com.example.util.timereminder.prefs;
+package com.example.util.timereminder.ui.prefs;
 
 import android.os.Bundle;
 

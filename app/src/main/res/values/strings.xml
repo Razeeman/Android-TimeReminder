@@ -27,6 +27,10 @@
     <string name="prefs_general_settings_title">General Settings</string>
     <string name="prefs_visual_settings_title">Visibility Settings</string>
 
+    <!-- Date of birth preference -->
+    <string name="prefs_date_of_birth_title">Date of birth</string>
+    <string name="prefs_date_of_birth_key">date_of_birth</string>
+
     <!-- Life expectancy preference -->
     <string name="prefs_life_expectancy_title">Life expectancy in your country</string>
     <string name="prefs_life_expectancy_key">life_expectancy</string>

@@ -9,7 +9,6 @@
         <com.example.util.timereminder.ui.prefs.custom.DatePreference
             android:title="@string/prefs_date_of_birth_title"
             android:key="@string/prefs_date_of_birth_key"
-            android:defaultValue="1988-01-23"
             app:iconSpaceReserved="false"/>
 
         <EditTextPreference

@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import androidx.preference.PreferenceDialogFragmentCompat;
 
 public class DatePreferenceDialogFragment extends PreferenceDialogFragmentCompat {
@@ -28,17 +31,23 @@ public class DatePreferenceDialogFragment extends PreferenceDialogFragmentCompat
         super.onCreate(savedInstanceState);
 
         String dateValue = getDatePreference().getDate();
-        if (dateValue != null) {
-            mLastYear = getYear(dateValue);
-            mLastMonth = getMonth(dateValue);
-            mLastDay = getDay(dateValue);
+
+        if (dateValue == null || dateValue.isEmpty()) {
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            dateValue = df.format(calendar.getTime());
         }
+
+        mLastYear = getYear(dateValue);
+        mLastMonth = getMonth(dateValue);
+        mLastDay = getDay(dateValue);
     }
 
     @Override
     protected View onCreateDialogView(Context context) {
         mDatePicker = new DatePicker(getContext());
-        mDatePicker.setCalendarViewShown(false); // TODO deprecated
+        // Show spinner dialog for old APIs.
+        mDatePicker.setCalendarViewShown(false);
 
         return mDatePicker;
     }

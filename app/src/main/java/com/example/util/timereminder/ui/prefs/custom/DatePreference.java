@@ -2,17 +2,21 @@ package com.example.util.timereminder.ui.prefs.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import com.example.util.timereminder.R;
 
 import androidx.preference.DialogPreference;
 
+/**
+ * A dialog preference that shown calendar in the dialog.
+ *
+ * Saves a string value.
+ */
 public class DatePreference extends DialogPreference {
 
     private String mDateValue;
-    private CharSequence mSummary;
 
     public DatePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -25,25 +29,23 @@ public class DatePreference extends DialogPreference {
 
     @Override
     protected void onSetInitialValue(Object defaultValue) {
-        // TODO redo default value in code, remove from xml
-//        mDateValue = null;
-//
-//        String defaultDate;
-//        if (defaultValue == null) {
-//            Calendar calendar = Calendar.getInstance();
-//            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-//            defaultDate = df.format(calendar.getTime());
-//        } else {
-//            defaultDate = defaultValue.toString();
-//        }
-
         setDate(getPersistedString((String) defaultValue));
     }
 
+    /**
+     * Gets the date as a string from the current data storage.
+     *
+     * @return string representation of the date.
+     */
     public String getDate() {
         return mDateValue;
     }
 
+    /**
+     * Saves the date as a string in the current data storage.
+     *
+     * @param text string representation of the date to save.
+     */
     public void setDate(String text) {
         final boolean wasBlocking = shouldDisableDependents();
 
@@ -59,14 +61,38 @@ public class DatePreference extends DialogPreference {
         notifyChanged();
     }
 
-    public CharSequence getSummary() {
-        return mSummary;
-    }
+    /**
+     * A simple {@link androidx.preference.Preference.SummaryProvider} implementation for an
+     * {@link DatePreference}. If no value has been set, the summary displayed will be 'Not
+     * set', otherwise the summary displayed will be the value set for this preference.
+     */
+    public static final class SimpleSummaryProvider implements SummaryProvider<DatePreference> {
 
-    public void setSummary(CharSequence summary) {
-        if (summary == null && mSummary != null || summary != null && !summary.equals(mSummary)) {
-            mSummary = summary;
-            notifyChanged();
+        private static SimpleSummaryProvider sSimpleSummaryProvider;
+
+        private SimpleSummaryProvider() {}
+
+        /**
+         * Retrieve a singleton instance of this simple
+         * {@link androidx.preference.Preference.SummaryProvider} implementation.
+         *
+         * @return a singleton instance of this simple
+         * {@link androidx.preference.Preference.SummaryProvider} implementation
+         */
+        public static SimpleSummaryProvider getInstance() {
+            if (sSimpleSummaryProvider == null) {
+                sSimpleSummaryProvider = new SimpleSummaryProvider();
+            }
+            return sSimpleSummaryProvider;
+        }
+
+        @Override
+        public CharSequence provideSummary(DatePreference preference) {
+            if (TextUtils.isEmpty(preference.getDate())) {
+                return (preference.getContext().getString(R.string.not_set));
+            } else {
+                return preference.getDate();
+            }
         }
     }
 }

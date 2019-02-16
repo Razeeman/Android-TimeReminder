@@ -10,9 +10,13 @@ public interface PrefsContract {
 
     interface View extends BaseView<Presenter> {
 
+        void showInputError();
+
     }
 
     interface Presenter extends BasePresenter {
+
+        boolean checkInput(String newValue);
 
     }
 

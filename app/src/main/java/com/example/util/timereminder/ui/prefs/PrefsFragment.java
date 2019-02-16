@@ -1,23 +1,23 @@
 package com.example.util.timereminder.ui.prefs;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.util.timereminder.R;
 import com.example.util.timereminder.ui.prefs.custom.DatePreferenceDialogFragment;
 import com.example.util.timereminder.ui.prefs.custom.DatePreference;
 
 import androidx.fragment.app.DialogFragment;
-import androidx.preference.CheckBoxPreference;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
-import androidx.preference.PreferenceScreen;
 
 /**
  * Displays different preferences.
  */
-public class PrefsFragment extends PreferenceFragmentCompat implements PrefsContract.View {
+public class PrefsFragment extends PreferenceFragmentCompat
+        implements PrefsContract.View, Preference.OnPreferenceChangeListener {
 
     private PrefsContract.Presenter mPresenter;
 
@@ -38,7 +38,12 @@ public class PrefsFragment extends PreferenceFragmentCompat implements PrefsCont
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         addPreferencesFromResource(R.xml.preferences);
 
+        // Setting up summaries for all preferences.
         initSummary(getPreferenceScreen());
+
+        // Setting listener to check for input correctness.
+        Preference editText = findPreference(getString(R.string.prefs_life_expectancy_key));
+        editText.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -52,6 +57,21 @@ public class PrefsFragment extends PreferenceFragmentCompat implements PrefsCont
         } else {
             super.onDisplayPreferenceDialog(preference);
         }
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        boolean inputIsCorrect = false;
+        if (preference instanceof EditTextPreference) {
+            inputIsCorrect = mPresenter.checkInput((String) newValue);
+        }
+        return inputIsCorrect;
+    }
+
+    @Override
+    public void showInputError() {
+        Toast error = Toast.makeText(getContext(), "Please select a whole number", Toast.LENGTH_SHORT);
+        error.show();
     }
 
     /**

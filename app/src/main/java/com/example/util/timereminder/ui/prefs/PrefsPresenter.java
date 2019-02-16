@@ -5,7 +5,7 @@ import com.example.util.timereminder.data.prefs.PreferencesHelper;
 /**
  * Receives commands from UI, retrieves data from preferences and updates the UI.
  */
-public class PrefsPresenter implements PrefsContract.Presenter {
+public class PrefsPresenter implements PrefsContract.Presenter{
 
     private final PreferencesHelper mPreferencesHelper;
     private final PrefsContract.View mPrefsFragment;
@@ -24,5 +24,17 @@ public class PrefsPresenter implements PrefsContract.Presenter {
     @Override
     public void stop() {
 
+    }
+
+    @Override
+    public boolean checkInput(String newValue) {
+        try {
+            Integer.parseInt(newValue);
+            return true;
+        } catch (NumberFormatException nfe) {
+            // If the input is not a whole number, show an error.
+            mPrefsFragment.showInputError();
+            return false;
+        }
     }
 }

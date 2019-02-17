@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Creating the helper for app preferences.
-        PreferencesHelper preferencesHelper =
-                new PreferencesHelper(PreferenceManager.getDefaultSharedPreferences(this));
+        PreferencesHelper preferencesHelper = new PreferencesHelper(
+                PreferenceManager.getDefaultSharedPreferences(this), getResources());
 
         // Creating the presenter.
         mMainPresenter = new MainPresenter(preferencesHelper, mainFragment);

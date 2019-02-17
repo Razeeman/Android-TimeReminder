@@ -13,7 +13,7 @@ import androidx.preference.PreferenceDialogFragmentCompat;
 public class DatePreferenceDialogFragment extends PreferenceDialogFragmentCompat {
 
     private int mLastYear;
-    private int mLastMonth;
+    private int mLastMonth; // 0-based. e.g., 0 for January.
     private int mLastDay;
     private DatePicker mDatePicker;
 
@@ -56,18 +56,18 @@ public class DatePreferenceDialogFragment extends PreferenceDialogFragmentCompat
     protected void onBindDialogView(View view) {
         super.onBindDialogView(view);
 
-        mDatePicker.updateDate(mLastYear, mLastMonth - 1, mLastDay);
+        mDatePicker.updateDate(mLastYear, mLastMonth, mLastDay);
     }
 
     @Override
     public void onDialogClosed(boolean positiveResult) {
         if (positiveResult) {
             mLastYear = mDatePicker.getYear();
-            mLastMonth = mDatePicker.getMonth() + 1;
+            mLastMonth = mDatePicker.getMonth();
             mLastDay = mDatePicker.getDayOfMonth();
 
             Calendar c = Calendar.getInstance();
-            c.set(mLastYear, mLastMonth, mLastDay);
+            c.set(mLastYear, mLastMonth, mLastDay, 0, 0);
 
             long dateUTC = c.getTimeInMillis();
 

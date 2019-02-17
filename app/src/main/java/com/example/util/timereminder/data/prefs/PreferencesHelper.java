@@ -1,33 +1,39 @@
 package com.example.util.timereminder.data.prefs;
 
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 
+import com.example.util.timereminder.R;
 import com.example.util.timereminder.utils.AppTimeUtils;
 
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class PreferencesHelper implements BasePreferencesHelper {
 
-    private static final int LIFE_EXPECTANCY_IN_YEARS = 100;
-
     private final SharedPreferences mSharedPreferences;
+    private final Resources mResources;
 
-    public PreferencesHelper(SharedPreferences sharedPreferences) {
+    public PreferencesHelper(SharedPreferences sharedPreferences, Resources resources) {
         mSharedPreferences = sharedPreferences;
+        mResources = resources;
     }
 
     @Override
     public long getDateOfBirthUTC() {
-        Date date = new GregorianCalendar(1988, Calendar.JANUARY, 23).getTime();
-        return date.getTime();
+        long dateUTC = mSharedPreferences
+                .getLong(mResources.getString(R.string.prefs_date_of_birth_key), 0);
+        return dateUTC;
     }
 
     @Override
     public long getDateOfDeathUTC() {
         Date dateOfBirth = new Date(getDateOfBirthUTC());
-        Date dateOfDeath = AppTimeUtils.addYears(dateOfBirth, LIFE_EXPECTANCY_IN_YEARS);
+        String lifeExpectancyString = mSharedPreferences
+                .getString(mResources.getString(R.string.prefs_life_expectancy_key), "0");
+        int lifeExpectancy = Integer.parseInt(lifeExpectancyString);
+
+        Date dateOfDeath = AppTimeUtils.addYears(dateOfBirth, lifeExpectancy);
+
         return dateOfDeath.getTime();
     }
 

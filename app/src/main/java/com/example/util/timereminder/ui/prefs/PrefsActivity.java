@@ -41,8 +41,8 @@ public class PrefsActivity extends AppCompatActivity {
         }
 
         // Creating the helper for app preferences.
-        PreferencesHelper preferencesHelper =
-                new PreferencesHelper(PreferenceManager.getDefaultSharedPreferences(this));
+        PreferencesHelper preferencesHelper = new PreferencesHelper(
+                PreferenceManager.getDefaultSharedPreferences(this), getResources());
 
         // Creating the presenter.
         mPrefsPresenter = new PrefsPresenter(preferencesHelper, prefsFragment);

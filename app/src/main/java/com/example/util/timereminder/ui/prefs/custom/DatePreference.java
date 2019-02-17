@@ -2,21 +2,24 @@ package com.example.util.timereminder.ui.prefs.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 
 import com.example.util.timereminder.R;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import androidx.preference.DialogPreference;
 
 /**
  * A dialog preference that shown calendar in the dialog.
  *
- * Saves a string value.
+ * Saves a long value of UTC date.
  */
 public class DatePreference extends DialogPreference {
 
-    private String mDateValue;
+    private long mDateValue;
 
     public DatePreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -29,29 +32,42 @@ public class DatePreference extends DialogPreference {
 
     @Override
     protected void onSetInitialValue(Object defaultValue) {
-        setDate(getPersistedString((String) defaultValue));
+        long defaultLong = 0;
+
+        // If default value is set in xml, try to parse it in the format "1988-01-23".
+        String defaultString = (String) defaultValue;
+        if (defaultString != null && !defaultString.isEmpty()) {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            try {
+                defaultLong = df.parse(defaultString).getTime();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        setDate(getPersistedLong(defaultLong));
     }
 
     /**
-     * Gets the date as a string from the current data storage.
+     * Gets the UTC date from the current data storage.
      *
-     * @return string representation of the date.
+     * @return long representation of the UTC date.
      */
-    public String getDate() {
+    public long getDate() {
         return mDateValue;
     }
 
     /**
-     * Saves the date as a string in the current data storage.
+     * Saves the UTC date as a long in the current data storage.
      *
-     * @param text string representation of the date to save.
+     * @param dateUTC UTC date to save.
      */
-    public void setDate(String text) {
+    public void setDate(long dateUTC) {
         final boolean wasBlocking = shouldDisableDependents();
 
-        mDateValue = text;
+        mDateValue = dateUTC;
 
-        persistString(text);
+        persistLong(dateUTC);
 
         final boolean isBlocking = shouldDisableDependents();
         if (isBlocking != wasBlocking) {
@@ -88,10 +104,13 @@ public class DatePreference extends DialogPreference {
 
         @Override
         public CharSequence provideSummary(DatePreference preference) {
-            if (TextUtils.isEmpty(preference.getDate())) {
+            if (preference.getDate() == 0) {
                 return (preference.getContext().getString(R.string.not_set));
             } else {
-                return preference.getDate();
+                long dateUTC = preference.getDate();
+                SimpleDateFormat dateFormat =
+                        new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+                return dateFormat.format(dateUTC);
             }
         }
     }

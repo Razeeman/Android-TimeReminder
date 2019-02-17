@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import androidx.preference.PreferenceDialogFragmentCompat;
 
@@ -30,17 +30,17 @@ public class DatePreferenceDialogFragment extends PreferenceDialogFragmentCompat
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String dateValue = getDatePreference().getDate();
+        long dateUTC = getDatePreference().getDate();
 
-        if (dateValue == null || dateValue.isEmpty()) {
-            Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            dateValue = df.format(calendar.getTime());
+        if (dateUTC == 0) {
+            dateUTC = System.currentTimeMillis();
         }
 
-        mLastYear = getYear(dateValue);
-        mLastMonth = getMonth(dateValue);
-        mLastDay = getDay(dateValue);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date(dateUTC));
+        mLastYear = calendar.get(Calendar.YEAR);
+        mLastMonth = calendar.get(Calendar.MONTH);
+        mLastDay = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
     @Override
@@ -66,33 +66,19 @@ public class DatePreferenceDialogFragment extends PreferenceDialogFragmentCompat
             mLastMonth = mDatePicker.getMonth() + 1;
             mLastDay = mDatePicker.getDayOfMonth();
 
-            String dateVal = String.valueOf(mLastYear) + "-"
-                    + String.valueOf(mLastMonth) + "-"
-                    + String.valueOf(mLastDay);
+            Calendar c = Calendar.getInstance();
+            c.set(mLastYear, mLastMonth, mLastDay);
+
+            long dateUTC = c.getTimeInMillis();
 
             final DatePreference preference = getDatePreference();
-            if (preference.callChangeListener(dateVal)) {
-                preference.setDate(dateVal);
+            if (preference.callChangeListener(dateUTC)) {
+                preference.setDate(dateUTC);
             }
         }
     }
 
     private DatePreference getDatePreference() {
         return (DatePreference) getPreference();
-    }
-
-    private int getYear(String dateString) {
-        String[] datePieces = dateString.split("-");
-        return (Integer.parseInt(datePieces[0]));
-    }
-
-    private int getMonth(String dateString) {
-        String[] datePieces = dateString.split("-");
-        return (Integer.parseInt(datePieces[1]));
-    }
-
-    private int getDay(String dateString) {
-        String[] datePieces = dateString.split("-");
-        return (Integer.parseInt(datePieces[2]));
     }
 }

@@ -8,4 +8,6 @@
     <color name="colorText">#FFFFFF</color>
     <color name="colorPrimaryText">#ECEFF1</color>
     <color name="colorSecondaryText">#B0BEC5</color>
+
+    <color name="ic_launcher_background">#F23D79</color>
 </resources>

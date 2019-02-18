@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- - - - - - - - - - - -->
+    <!--Used by Preferences  -->
+    <!-- - - - - - - - - - - -->
+
+    <!-- Default values for preferences -->
+    <bool name="prefs_show_minutes_default">true</bool>
+    <bool name="prefs_show_hours_default">true</bool>
+    <bool name="prefs_show_days_default">true</bool>
+    <bool name="prefs_show_years_default">true</bool>
+
+</resources>

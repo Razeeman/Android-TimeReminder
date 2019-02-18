@@ -27,10 +27,23 @@ public class MainPresenter implements MainContract.Presenter {
     public void start() {
         if (mPreferencesHelper.isSettingsSetUp()) {
             mMainFragment.showData();
+            setDataVisibility();
             startTimer();
         } else {
             mMainFragment.showNoDataAvailable();
         }
+    }
+
+    /**
+     * Check preferences and set up data visibility accordingly.
+     */
+    private void setDataVisibility() {
+        boolean showMinutes = mPreferencesHelper.showMinutes();
+        boolean showHours = mPreferencesHelper.showHours();
+        boolean showDays = mPreferencesHelper.showDays();
+        boolean showYears = mPreferencesHelper.showYears();
+
+        mMainFragment.setDataVisibility(showMinutes, showHours, showDays, showYears);
     }
 
     @Override

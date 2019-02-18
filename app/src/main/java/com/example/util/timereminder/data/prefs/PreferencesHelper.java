@@ -47,4 +47,32 @@ public class PreferencesHelper implements BasePreferencesHelper {
         return dateOfBirthSetUp && lifeExpectancySetUp;
     }
 
+    @Override
+    public boolean showMinutes() {
+        String key = mResources.getString(R.string.prefs_show_minutes_key);
+        boolean defaultValue = mResources.getBoolean(R.bool.prefs_show_minutes_default);
+        return mSharedPreferences.getBoolean(key, defaultValue);
+    }
+
+    @Override
+    public boolean showHours() {
+        String key = mResources.getString(R.string.prefs_show_hours_key);
+        boolean defaultValue = mResources.getBoolean(R.bool.prefs_show_hours_default);
+        return mSharedPreferences.getBoolean(key, defaultValue);
+    }
+
+    @Override
+    public boolean showDays() {
+        String key = mResources.getString(R.string.prefs_show_days_key);
+        boolean defaultValue = mResources.getBoolean(R.bool.prefs_show_days_default);
+        return mSharedPreferences.getBoolean(key, defaultValue);
+    }
+
+    @Override
+    public boolean showYears() {
+        String key = mResources.getString(R.string.prefs_show_years_key);
+        boolean defaultValue = mResources.getBoolean(R.bool.prefs_show_years_default);
+        return mSharedPreferences.getBoolean(key, defaultValue);
+    }
+
 }

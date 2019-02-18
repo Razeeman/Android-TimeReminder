@@ -25,7 +25,7 @@
         <CheckBoxPreference
             android:title="@string/prefs_show_minutes_title"
             android:key="@string/prefs_show_minutes_key"
-            android:defaultValue="@string/prefs_show_minutes_default"
+            android:defaultValue="@bool/prefs_show_minutes_default"
             android:summaryOff="@string/prefs_show_hidden"
             android:summaryOn="@string/prefs_show_visible"
             app:iconSpaceReserved="false"/>
@@ -33,7 +33,7 @@
         <CheckBoxPreference
             android:title="@string/prefs_show_hours_title"
             android:key="@string/prefs_show_hours_key"
-            android:defaultValue="@string/prefs_show_hours_default"
+            android:defaultValue="@bool/prefs_show_hours_default"
             android:summaryOff="@string/prefs_show_hidden"
             android:summaryOn="@string/prefs_show_visible"
             app:iconSpaceReserved="false"/>
@@ -41,15 +41,15 @@
         <CheckBoxPreference
             android:title="@string/prefs_show_days_title"
             android:key="@string/prefs_show_days_key"
-            android:defaultValue="@string/prefs_show_days_default"
+            android:defaultValue="@bool/prefs_show_days_default"
             android:summaryOff="@string/prefs_show_hidden"
             android:summaryOn="@string/prefs_show_visible"
             app:iconSpaceReserved="false"/>
 
         <CheckBoxPreference
             android:title="@string/prefs_show_years_title"
-            android:key="@string/pres_show_years_key"
-            android:defaultValue="@string/prefs_show_years_default"
+            android:key="@string/prefs_show_years_key"
+            android:defaultValue="@bool/prefs_show_years_default"
             android:summaryOff="@string/prefs_show_hidden"
             android:summaryOn="@string/prefs_show_visible"
             app:iconSpaceReserved="false"/>

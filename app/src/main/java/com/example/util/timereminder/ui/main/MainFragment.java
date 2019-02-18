@@ -24,9 +24,13 @@ public class MainFragment extends Fragment implements MainContract.View {
     private TextView mTimeNowTextView;
     private TextView mSecondsLeftTextView;
     private TextView mMinutesLeftTextView;
+    private TextView mMinutesLeftLabelTextView;
     private TextView mHoursLeftTextView;
+    private TextView mHoursLeftLabelTextView;
     private TextView mDaysLeftTextView;
+    private TextView mDaysLeftLabelTextView;
     private TextView mYearsLeftTextView;
+    private TextView mYearsLeftLabelTextView;
 
     private TextView mNoDataTextView;
     private ScrollView mDataScrollView;
@@ -73,9 +77,13 @@ public class MainFragment extends Fragment implements MainContract.View {
         mTimeNowTextView = root.findViewById(R.id.tv_time_now);
         mSecondsLeftTextView = root.findViewById(R.id.tv_seconds_left);
         mMinutesLeftTextView = root.findViewById(R.id.tv_minutes_left);
+        mMinutesLeftLabelTextView = root.findViewById(R.id.tv_minutes_left_label);
         mHoursLeftTextView = root.findViewById(R.id.tv_hours_left);
+        mHoursLeftLabelTextView = root.findViewById(R.id.tv_hours_left_label);
         mDaysLeftTextView = root.findViewById(R.id.tv_days_left);
+        mDaysLeftLabelTextView = root.findViewById(R.id.tv_days_left_label);
         mYearsLeftTextView = root.findViewById(R.id.tv_years_left);
+        mYearsLeftLabelTextView = root.findViewById(R.id.tv_years_left_label);
 
         // Setting up data and no data views.
         mNoDataTextView = root.findViewById(R.id.tv_no_data);
@@ -150,4 +158,43 @@ public class MainFragment extends Fragment implements MainContract.View {
 
         mNoDataTextView.setVisibility(View.INVISIBLE);
     }
+
+    /**
+     * Shows or hides time views according to preferences.
+     *
+     * @param showMinutes show or hide view for minutes.
+     * @param showHours   show or hide view for hours.
+     * @param showDays    show or hide view for days.
+     * @param showYears   show or hide view for years.
+     */
+    @Override
+    public void setDataVisibility(
+            boolean showMinutes, boolean showHours, boolean showDays, boolean showYears) {
+        switchVisibility(mMinutesLeftTextView, showMinutes);
+        switchVisibility(mMinutesLeftLabelTextView, showMinutes);
+
+        switchVisibility(mHoursLeftTextView, showHours);
+        switchVisibility(mHoursLeftLabelTextView, showHours);
+
+        switchVisibility(mDaysLeftTextView, showDays);
+        switchVisibility(mDaysLeftLabelTextView, showDays);
+
+        switchVisibility(mYearsLeftTextView, showYears);
+        switchVisibility(mYearsLeftLabelTextView, showYears);
+    }
+
+    /**
+     * Switch visibility of a view.
+     * @param view     view to show or hide.
+     * @param showView show or hide the view.
+     */
+    private void switchVisibility(View view, boolean showView) {
+        if (showView) {
+            view.setVisibility(View.VISIBLE);
+        } else {
+            view.setVisibility(View.GONE);
+        }
+    }
+
+
 }

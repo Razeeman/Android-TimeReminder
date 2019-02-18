@@ -18,6 +18,9 @@ public interface MainContract {
 
         void showData();
 
+        void setDataVisibility(
+                boolean showMinutes, boolean showHours, boolean showDays, boolean showYears);
+
     }
 
     interface Presenter extends BasePresenter {

@@ -8,4 +8,12 @@ public interface BasePreferencesHelper {
 
     boolean isSettingsSetUp();
 
+    boolean showMinutes();
+
+    boolean showHours();
+
+    boolean showDays();
+
+    boolean showYears();
+
 }

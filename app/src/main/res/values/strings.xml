@@ -16,6 +16,9 @@
     <string name="days_label">days</string>
     <string name="years_label">years</string>
 
+    <!-- Message to show if setting are not yet set up -->
+    <string name="no_data_available">Please, set up the settings first</string>
+
     <!-- Menu items -->
     <string name="menu_settings">Settings</string>
 
@@ -32,7 +35,7 @@
     <string name="prefs_date_of_birth_key">date_of_birth</string>
 
     <!-- Life expectancy preference -->
-    <string name="prefs_life_expectancy_title">Life expectancy in your country</string>
+    <string name="prefs_life_expectancy_title">Life expectancy in years</string>
     <string name="prefs_life_expectancy_key">life_expectancy</string>
 
     <!-- Preference to show number of minutes -->

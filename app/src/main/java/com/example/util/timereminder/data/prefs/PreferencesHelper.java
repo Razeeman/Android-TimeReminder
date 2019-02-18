@@ -37,4 +37,14 @@ public class PreferencesHelper implements BasePreferencesHelper {
         return dateOfDeath.getTime();
     }
 
+    @Override
+    public boolean isSettingsSetUp() {
+        boolean dateOfBirthSetUp = mSharedPreferences
+                .contains(mResources.getString(R.string.prefs_date_of_birth_key));
+        boolean lifeExpectancySetUp = mSharedPreferences
+                .contains(mResources.getString(R.string.prefs_life_expectancy_key));
+
+        return dateOfBirthSetUp && lifeExpectancySetUp;
+    }
+
 }

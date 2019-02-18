@@ -25,18 +25,36 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void start() {
-        loadTimeData(); //TODO unnecessary?
+        if (mPreferencesHelper.isSettingsSetUp()) {
+            mMainFragment.showData();
+            startTimer();
+        } else {
+            mMainFragment.showNoDataAvailable();
+        }
+    }
+
+    @Override
+    public void stop() {
+        stopTimer();
+    }
+
+    /**
+     * Starts the cyclic timer to update data.
+     */
+    private void startTimer() {
         mTimer = new Timer();
         mTimer.schedule(new TimerTask() {
             @Override
             public void run() {
                 loadTimeData();
             }
-        }, 0 ,1000);
+        }, 0, 1000);
     }
 
-    @Override
-    public void stop() {
+    /**
+     * Stops the timer.
+     */
+    private void stopTimer() {
         if (mTimer != null) {
             mTimer.cancel();
             mTimer.purge();

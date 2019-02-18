@@ -16,6 +16,20 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="19:44 2/11/2019" />
 
+    <TextView
+        android:id="@+id/tv_no_data"
+        style="@style/Label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="@string/no_data_available"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ScrollView
         android:id="@+id/sv_main"
         android:layout_width="match_parent"

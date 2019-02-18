@@ -14,6 +14,10 @@ public interface MainContract {
 
         void updateTimes(String s, String m, String h, String d, String y);
 
+        void showNoDataAvailable();
+
+        void showData();
+
     }
 
     interface Presenter extends BasePresenter {

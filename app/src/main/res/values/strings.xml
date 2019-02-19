@@ -32,27 +32,27 @@
 
     <!-- Date of birth preference -->
     <string name="prefs_date_of_birth_title">Date of birth</string>
-    <string name="prefs_date_of_birth_key">date_of_birth</string>
+    <string name="prefs_date_of_birth_key" translatable="false">date_of_birth</string>
 
     <!-- Life expectancy preference -->
     <string name="prefs_life_expectancy_title">Life expectancy in years</string>
-    <string name="prefs_life_expectancy_key">life_expectancy</string>
+    <string name="prefs_life_expectancy_key" translatable="false">life_expectancy</string>
 
     <!-- Preference to show number of minutes -->
     <string name="prefs_show_minutes_title">Show minutes</string>
-    <string name="prefs_show_minutes_key">show_minutes</string>
+    <string name="prefs_show_minutes_key" translatable="false">show_minutes</string>
 
     <!-- Preference to show number of hours -->
     <string name="prefs_show_hours_title">Show hours</string>
-    <string name="prefs_show_hours_key">show_hours</string>
+    <string name="prefs_show_hours_key" translatable="false">show_hours</string>
 
     <!-- Preference to show number of days -->
     <string name="prefs_show_days_title">Show days</string>
-    <string name="prefs_show_days_key">show_days</string>
+    <string name="prefs_show_days_key" translatable="false">show_days</string>
 
     <!-- Preference to show number of years -->
     <string name="prefs_show_years_title">Show years</string>
-    <string name="prefs_show_years_key">show_years</string>
+    <string name="prefs_show_years_key" translatable="false">show_years</string>
 
     <!-- Checkbox summaries -->
     <string name="prefs_show_hidden">Hidden</string>

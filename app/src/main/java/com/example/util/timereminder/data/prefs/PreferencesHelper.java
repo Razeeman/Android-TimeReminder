@@ -8,6 +8,8 @@ import com.example.util.timereminder.utils.AppTimeUtils;
 
 import java.util.Date;
 
+import androidx.annotation.VisibleForTesting;
+
 public class PreferencesHelper implements BasePreferencesHelper {
 
     private final SharedPreferences mSharedPreferences;
@@ -73,6 +75,11 @@ public class PreferencesHelper implements BasePreferencesHelper {
         String key = mResources.getString(R.string.prefs_show_years_key);
         boolean defaultValue = mResources.getBoolean(R.bool.prefs_show_years_default);
         return mSharedPreferences.getBoolean(key, defaultValue);
+    }
+
+    @VisibleForTesting
+    public void clear() {
+        mSharedPreferences.edit().clear().apply();
     }
 
 }

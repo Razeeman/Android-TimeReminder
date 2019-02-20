@@ -7,6 +7,8 @@ import com.example.util.timereminder.utils.AppTimeUtils;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import androidx.annotation.VisibleForTesting;
+
 /**
  * Receives commands from UI, retrieves data from preferences and updates the UI.
  */
@@ -25,9 +27,22 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void start() {
+        loadData();
+    }
+
+    @Override
+    public void stop() {
+        stopTimer();
+    }
+
+    /**
+     * Checks preferences for data, updates UI and UI visibility.
+     */
+    @Override
+    public void loadData() {
         if (mPreferencesHelper.isSettingsSetUp()) {
             mMainFragment.showData();
-            setDataVisibility();
+            getDataVisibility();
             startTimer();
         } else {
             mMainFragment.showNoDataAvailable();
@@ -37,18 +52,13 @@ public class MainPresenter implements MainContract.Presenter {
     /**
      * Check preferences and set up data visibility accordingly.
      */
-    private void setDataVisibility() {
+    private void getDataVisibility() {
         boolean showMinutes = mPreferencesHelper.showMinutes();
         boolean showHours = mPreferencesHelper.showHours();
         boolean showDays = mPreferencesHelper.showDays();
         boolean showYears = mPreferencesHelper.showYears();
 
         mMainFragment.setDataVisibility(showMinutes, showHours, showDays, showYears);
-    }
-
-    @Override
-    public void stop() {
-        stopTimer();
     }
 
     /**
@@ -77,6 +87,7 @@ public class MainPresenter implements MainContract.Presenter {
     /**
      * Prepares data and updates the UI.
      */
+    @VisibleForTesting
     public void loadTimeData() {
         mMainFragment.updateCurrentTime(getFullDateString());
 
@@ -151,5 +162,4 @@ public class MainPresenter implements MainContract.Presenter {
     private String getNumberOfYearsString(long dateUTC) {
         return AppStringUtils.applyGroupingSeparator(AppTimeUtils.getNumberOfYears(dateUTC));
     }
-
 }

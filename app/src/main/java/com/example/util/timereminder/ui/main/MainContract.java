@@ -25,7 +25,7 @@ public interface MainContract {
 
     interface Presenter extends BasePresenter {
 
-        void loadTimeData();
+        void loadData();
 
     }
 

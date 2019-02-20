@@ -15,9 +15,6 @@ import static org.mockito.Mockito.verify;
 
 public class MainPresenterTest {
 
-    private static final long DATE_OF_BIRTH_UTC = 129123123L;
-    private static final int LIFE_EXPECTANCY = 67;
-
     @Mock private PreferencesHelper mPreferencesHelper;
     @Mock private MainContract.View mView;
 

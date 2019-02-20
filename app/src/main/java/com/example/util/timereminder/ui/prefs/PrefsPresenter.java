@@ -18,12 +18,12 @@ public class PrefsPresenter implements PrefsContract.Presenter{
 
     @Override
     public void start() {
-
+        // Not used.
     }
 
     @Override
     public void stop() {
-
+        // Not used.
     }
 
     @Override

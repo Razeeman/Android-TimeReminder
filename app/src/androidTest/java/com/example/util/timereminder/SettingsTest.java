@@ -115,4 +115,13 @@ public class SettingsTest {
         onView(withId(R.id.tv_years_left)).check(matches(not(isDisplayed())));
     }
 
+    @Test
+    public void incorrectInput() {
+        TestUtils.navigateToSettings();
+
+        TestUtils.actionTypeText(R.string.prefs_life_expectancy_title, "1000");
+
+        TestUtils.toastTextShowing(R.string.incorrect_input);
+    }
+
 }

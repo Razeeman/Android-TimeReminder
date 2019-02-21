@@ -2,7 +2,7 @@
     <string name="app_name">TimeReminder</string>
 
     <!-- - - - - - - - - - - -->
-    <!--Used in UI           -->
+    <!-- Used in UI          -->
     <!-- - - - - - - - - - - -->
 
     <!-- Top and bottom texts on main view -->
@@ -19,11 +19,14 @@
     <!-- Message to show if setting are not yet set up -->
     <string name="no_data_available">Please, set up the settings first</string>
 
+    <!-- Message to show on incorrect input -->
+    <string name="incorrect_input">Please select a whole number</string>
+
     <!-- Menu items -->
     <string name="menu_settings">Settings</string>
 
     <!-- - - - - - - - - - - -->
-    <!--Used by Preferences  -->
+    <!-- Used by Preferences -->
     <!-- - - - - - - - - - - -->
 
     <!-- Preference categories -->

@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.example.util.timereminder.R;
 import com.example.util.timereminder.ui.prefs.custom.DatePreferenceDialogFragment;
 import com.example.util.timereminder.ui.prefs.custom.DatePreference;
+import com.example.util.timereminder.ui.prefs.custom.CustomEditTextPreferenceDialogFragmentCompat;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.EditTextPreference;
@@ -18,6 +19,9 @@ import androidx.preference.PreferenceGroup;
  */
 public class PrefsFragment extends PreferenceFragmentCompat
         implements PrefsContract.View, Preference.OnPreferenceChangeListener {
+
+    private static final String DIALOG_FRAGMENT_TAG =
+            "com.example.util.timereminder.ui.prefs.PrefsFragment.DIALOG";
 
     private PrefsContract.Presenter mPresenter;
 
@@ -48,12 +52,22 @@ public class PrefsFragment extends PreferenceFragmentCompat
 
     @Override
     public void onDisplayPreferenceDialog(Preference preference) {
-        // TODO check if already shown
-        if (preference instanceof DatePreference) {
-            final DialogFragment f;
+        // Check if dialog is already showing
+        if (getFragmentManager().findFragmentByTag(DIALOG_FRAGMENT_TAG) != null) {
+            return;
+        }
+
+        // Prepare custom dialogs.
+        DialogFragment f = null;
+        if (preference instanceof EditTextPreference) {
+            f = CustomEditTextPreferenceDialogFragmentCompat.newInstance(preference.getKey());
+        } else if (preference instanceof DatePreference) {
             f = DatePreferenceDialogFragment.newInstance(preference.getKey());
+        }
+
+        if (f != null) {
             f.setTargetFragment(this, 0);
-            f.show(getFragmentManager(), null);
+            f.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
         } else {
             super.onDisplayPreferenceDialog(preference);
         }
@@ -70,7 +84,7 @@ public class PrefsFragment extends PreferenceFragmentCompat
 
     @Override
     public void showInputError() {
-        Toast error = Toast.makeText(getContext(), "Please select a whole number", Toast.LENGTH_SHORT);
+        Toast error = Toast.makeText(getContext(), R.string.incorrect_input, Toast.LENGTH_SHORT);
         error.show();
     }
 

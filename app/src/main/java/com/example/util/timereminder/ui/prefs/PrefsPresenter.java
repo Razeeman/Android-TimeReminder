@@ -29,10 +29,16 @@ public class PrefsPresenter implements PrefsContract.Presenter{
     @Override
     public boolean checkInput(String newValue) {
         try {
-            Integer.parseInt(newValue);
-            return true;
+            int value = Integer.parseInt(newValue);
+            if (value > 0 && value <= 150) {
+                return true;
+            } else {
+                // If the input is a number but not in accepted range, show an error and discard it.
+                mPrefsFragment.showInputError();
+                return false;
+            }
         } catch (NumberFormatException nfe) {
-            // If the input is not a whole number, show an error.
+            // If the input is not a whole number, show an error and discard it.
             mPrefsFragment.showInputError();
             return false;
         }

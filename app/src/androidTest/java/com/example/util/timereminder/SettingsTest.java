@@ -47,11 +47,11 @@ public class SettingsTest {
 
         onView(allOf(
                 hasSibling(withText(R.string.prefs_date_of_birth_title)),
-                withText(R.string.not_set)))
+                withText(R.string.prefs_not_set)))
                 .check(matches(isDisplayed()));
         onView(allOf(
                 hasSibling(withText(R.string.prefs_life_expectancy_title)),
-                withText(R.string.not_set)))
+                withText(R.string.prefs_not_set)))
                 .check(matches(isDisplayed()));
     }
 

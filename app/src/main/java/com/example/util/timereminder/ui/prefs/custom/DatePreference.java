@@ -105,7 +105,7 @@ public class DatePreference extends DialogPreference {
         @Override
         public CharSequence provideSummary(DatePreference preference) {
             if (preference.getDate() == 0) {
-                return (preference.getContext().getString(R.string.not_set));
+                return (preference.getContext().getString(R.string.prefs_not_set));
             } else {
                 long dateUTC = preference.getDate();
                 SimpleDateFormat dateFormat =

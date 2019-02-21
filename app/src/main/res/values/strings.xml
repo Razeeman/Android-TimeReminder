@@ -20,7 +20,7 @@
     <string name="no_data_available">Please, set up the settings first</string>
 
     <!-- Message to show on incorrect input -->
-    <string name="incorrect_input">Please select a whole number</string>
+    <string name="incorrect_input">Please select a whole number between 0 and 150</string>
 
     <!-- Menu items -->
     <string name="menu_settings">Settings</string>
@@ -60,5 +60,7 @@
     <!-- Checkbox summaries -->
     <string name="prefs_show_hidden">Hidden</string>
     <string name="prefs_show_visible">Shown</string>
+
+    <string name="prefs_not_set">Not set</string>
 
 </resources>

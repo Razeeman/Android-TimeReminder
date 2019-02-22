@@ -5,7 +5,6 @@ import android.content.res.Resources;
 
 import com.example.util.timereminder.utils.AppTimeUtils;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -38,10 +37,6 @@ public class PreferencesHelperTest {
 
         // Preferences keys are stored in resources. No need to access them.
         when(mResources.getString(anyInt())).thenReturn("");
-    }
-
-    @After
-    public void tearDown() throws Exception {
     }
 
     @Test

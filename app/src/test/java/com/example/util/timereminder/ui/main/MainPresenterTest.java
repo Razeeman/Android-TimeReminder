@@ -2,7 +2,6 @@ package com.example.util.timereminder.ui.main;
 
 import com.example.util.timereminder.data.prefs.PreferencesHelper;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -25,10 +24,6 @@ public class MainPresenterTest {
         MockitoAnnotations.initMocks(this);
 
         mMainPresenter = new MainPresenter(mPreferencesHelper, mView);
-    }
-
-    @After
-    public void tearDown() throws Exception {
     }
 
     @Test

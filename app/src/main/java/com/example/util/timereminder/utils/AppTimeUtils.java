@@ -3,6 +3,7 @@ package com.example.util.timereminder.utils;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class AppTimeUtils {
 
@@ -33,7 +34,8 @@ public class AppTimeUtils {
     }
 
     public static String getFullDateString(long dateInMilliseconds) {
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
+        SimpleDateFormat df =
+                new SimpleDateFormat("HH:mm:ss dd/MM/yyyy", Locale.getDefault());
         return df.format(dateInMilliseconds);
     }
 

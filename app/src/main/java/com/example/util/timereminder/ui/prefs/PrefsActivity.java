@@ -14,6 +14,7 @@ import androidx.preference.PreferenceManager;
 
 public class PrefsActivity extends AppCompatActivity {
 
+    // Can be used later.
     private PrefsPresenter mPrefsPresenter;
 
     @Override

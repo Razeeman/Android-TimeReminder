@@ -75,6 +75,7 @@ public class MainFragment extends Fragment implements MainContract.View {
 
         // Setting up the UI for times.
         mTimeNowTextView = root.findViewById(R.id.tv_time_now);
+        mTimeNowTextView.setVisibility(View.GONE);
         mSecondsLeftTextView = root.findViewById(R.id.tv_seconds_left);
         mMinutesLeftTextView = root.findViewById(R.id.tv_minutes_left);
         mMinutesLeftLabelTextView = root.findViewById(R.id.tv_minutes_left_label);
@@ -101,6 +102,8 @@ public class MainFragment extends Fragment implements MainContract.View {
      */
     @Override
     public void updateCurrentTime(final String timeNow) {
+        if (getActivity() == null) return;
+
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -120,6 +123,8 @@ public class MainFragment extends Fragment implements MainContract.View {
     @Override
     public void updateTimes(final String s, final String m, final String h,
                             final String d, final String y) {
+        if (getActivity() == null) return;
+
         final int color = getActivity().getResources().getColor(R.color.colorAccent);
 
         getActivity().runOnUiThread(new Runnable() {

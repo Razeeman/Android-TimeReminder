@@ -1,5 +1,6 @@
 package com.example.util.timereminder.ui.prefs.custom;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -37,6 +38,9 @@ public class DatePreference extends DialogPreference {
         // If default value is set in xml, try to parse it in the format "1988-01-23".
         String defaultString = (String) defaultValue;
         if (defaultString != null && !defaultString.isEmpty()) {
+            // Lint suppressed because this format used to set default value in xml and it can't be
+            // dependant on Locale.
+            @SuppressLint("SimpleDateFormat")
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             try {
                 defaultLong = df.parse(defaultString).getTime();

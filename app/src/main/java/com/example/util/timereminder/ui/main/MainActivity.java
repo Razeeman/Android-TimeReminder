@@ -10,13 +10,13 @@ import com.example.util.timereminder.data.prefs.PreferencesHelper;
 import com.example.util.timereminder.ui.prefs.PrefsActivity;
 import com.example.util.timereminder.utils.AppActivityUtils;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.preference.PreferenceManager;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Can be used later.
     private MainPresenter mMainPresenter;
 
     @Override
@@ -27,11 +27,6 @@ public class MainActivity extends AppCompatActivity {
         // Setting up the toolbar.
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayShowTitleEnabled(false);
-        }
 
         // Creating the fragment.
         MainFragment mainFragment =

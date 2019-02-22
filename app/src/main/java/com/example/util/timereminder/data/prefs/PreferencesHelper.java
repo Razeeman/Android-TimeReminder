@@ -22,9 +22,8 @@ public class PreferencesHelper implements BasePreferencesHelper {
 
     @Override
     public long getDateOfBirthUTC() {
-        long dateUTC = mSharedPreferences
+        return mSharedPreferences
                 .getLong(mResources.getString(R.string.prefs_date_of_birth_key), 0);
-        return dateUTC;
     }
 
     @Override

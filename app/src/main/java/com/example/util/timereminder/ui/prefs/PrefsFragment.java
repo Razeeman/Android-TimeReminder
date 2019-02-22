@@ -1,6 +1,7 @@
 package com.example.util.timereminder.ui.prefs;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.example.util.timereminder.R;
@@ -115,7 +116,16 @@ public class PrefsFragment extends PreferenceFragmentCompat
         if (p instanceof DatePreference) {
             p.setSummaryProvider(DatePreference.SimpleSummaryProvider.getInstance());
         } else if (p instanceof EditTextPreference) {
-            p.setSummaryProvider(EditTextPreference.SimpleSummaryProvider.getInstance());
+            p.setSummaryProvider(new Preference.SummaryProvider<EditTextPreference>() {
+                @Override
+                public CharSequence provideSummary(EditTextPreference preference) {
+                    if (TextUtils.isEmpty(preference.getText())) {
+                        return (preference.getContext().getString(R.string.prefs_not_set));
+                    } else {
+                        return preference.getText();
+                    }
+                }
+            });
         }
     }
 }

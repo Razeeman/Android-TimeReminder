@@ -1,11 +1,14 @@
 package com.example.util.timereminder.ui.main;
 
+import com.example.util.timereminder.App;
 import com.example.util.timereminder.data.prefs.PreferencesHelper;
 import com.example.util.timereminder.utils.AppStringUtils;
 import com.example.util.timereminder.utils.AppTimeUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.inject.Inject;
 
 import androidx.annotation.VisibleForTesting;
 
@@ -14,13 +17,14 @@ import androidx.annotation.VisibleForTesting;
  */
 public class MainPresenter implements MainContract.Presenter {
 
-    private final PreferencesHelper mPreferencesHelper;
+    @Inject
+    PreferencesHelper mPreferencesHelper; // TODO should be private?
     private final MainContract.View mMainFragment;
 
     private Timer mTimer;
 
-    public MainPresenter(PreferencesHelper preferencesHelper, MainContract.View mainFragment) {
-        mPreferencesHelper = preferencesHelper;
+    public MainPresenter(MainContract.View mainFragment) {
+        App.getAppComponent().inject(this);
         mMainFragment = mainFragment;
         mMainFragment.setPresenter(this);
     }

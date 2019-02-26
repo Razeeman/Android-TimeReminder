@@ -6,13 +6,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.util.timereminder.R;
-import com.example.util.timereminder.data.prefs.PreferencesHelper;
 import com.example.util.timereminder.ui.prefs.PrefsActivity;
 import com.example.util.timereminder.utils.AppActivityUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.preference.PreferenceManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,12 +35,8 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager(), mainFragment, R.id.content_frame);
         }
 
-        // Creating the helper for app preferences.
-        PreferencesHelper preferencesHelper = new PreferencesHelper(
-                PreferenceManager.getDefaultSharedPreferences(this), getResources());
-
         // Creating the presenter.
-        mMainPresenter = new MainPresenter(preferencesHelper, mainFragment);
+        mMainPresenter = new MainPresenter(mainFragment);
     }
 
     @Override

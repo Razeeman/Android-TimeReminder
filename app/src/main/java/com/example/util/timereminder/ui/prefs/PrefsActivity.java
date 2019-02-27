@@ -3,19 +3,14 @@ package com.example.util.timereminder.ui.prefs;
 import android.os.Bundle;
 
 import com.example.util.timereminder.R;
-import com.example.util.timereminder.data.prefs.PreferencesHelper;
 import com.example.util.timereminder.utils.AppActivityUtils;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.preference.PreferenceManager;
 
 public class PrefsActivity extends AppCompatActivity {
-
-    // Can be used later.
-    private PrefsPresenter mPrefsPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,12 +35,5 @@ public class PrefsActivity extends AppCompatActivity {
             AppActivityUtils.addFragmentToActivity(
                     getSupportFragmentManager(), prefsFragment, R.id.content_frame);
         }
-
-        // Creating the helper for app preferences.
-        PreferencesHelper preferencesHelper = new PreferencesHelper(
-                PreferenceManager.getDefaultSharedPreferences(this), getResources());
-
-        // Creating the presenter.
-        mPrefsPresenter = new PrefsPresenter(preferencesHelper, prefsFragment);
     }
 }

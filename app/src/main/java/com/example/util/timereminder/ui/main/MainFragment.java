@@ -7,8 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.util.timereminder.App;
 import com.example.util.timereminder.R;
 import com.example.util.timereminder.utils.AppStringUtils;
+
+import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +22,8 @@ import androidx.fragment.app.Fragment;
  */
 public class MainFragment extends Fragment implements MainContract.View {
 
-    private MainContract.Presenter mPresenter;
+    @Inject
+    MainContract.Presenter mPresenter;
 
     private TextView mTimeNowTextView;
     private TextView mSecondsLeftTextView;
@@ -46,25 +50,21 @@ public class MainFragment extends Fragment implements MainContract.View {
     }
 
     @Override
-    public void setPresenter(MainContract.Presenter presenter) {
-        mPresenter = presenter;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
-        mPresenter.start();
+        mPresenter.attach(this);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mPresenter.stop();
+        mPresenter.detach();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        App.getAppComponent().inject(this);
     }
 
     @Nullable

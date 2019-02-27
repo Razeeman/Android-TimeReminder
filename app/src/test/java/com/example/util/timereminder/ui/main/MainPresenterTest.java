@@ -14,6 +14,8 @@ import static org.mockito.Mockito.verify;
 
 public class MainPresenterTest {
 
+    // TODO tests are broken because dagger.
+
     @Mock private PreferencesHelper mPreferencesHelper;
     @Mock private MainContract.View mView;
 

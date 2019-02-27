@@ -14,7 +14,7 @@ public interface PrefsContract {
 
     }
 
-    interface Presenter extends BasePresenter {
+    interface Presenter extends BasePresenter<View> {
 
         boolean checkInput(String newValue);
 

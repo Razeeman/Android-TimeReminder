@@ -14,9 +14,6 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Can be used later.
-    private MainPresenter mMainPresenter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +31,6 @@ public class MainActivity extends AppCompatActivity {
             AppActivityUtils.addFragmentToActivity(
                     getSupportFragmentManager(), mainFragment, R.id.content_frame);
         }
-
-        // Creating the presenter.
-        mMainPresenter = new MainPresenter(mainFragment);
     }
 
     @Override

@@ -9,22 +9,20 @@ public class PrefsPresenter implements PrefsContract.Presenter{
 
     // Can be used later.
     private final PreferencesHelper mPreferencesHelper;
-    private final PrefsContract.View mPrefsFragment;
+    private PrefsContract.View mPrefsFragment;
 
-    public PrefsPresenter(PreferencesHelper preferencesHelper, PrefsContract.View prefsFragment) {
+    public PrefsPresenter(PreferencesHelper preferencesHelper) {
         mPreferencesHelper = preferencesHelper;
-        mPrefsFragment = prefsFragment;
-        mPrefsFragment.setPresenter(this);
     }
 
     @Override
-    public void start() {
-        // Not used.
+    public void attach(PrefsContract.View view) {
+        mPrefsFragment = view;
     }
 
     @Override
-    public void stop() {
-        // Not used.
+    public void detach() {
+        mPrefsFragment = null;
     }
 
     @Override

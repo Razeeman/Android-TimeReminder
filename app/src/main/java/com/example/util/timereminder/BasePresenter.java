@@ -1,9 +1,9 @@
 package com.example.util.timereminder;
 
-public interface BasePresenter {
+public interface BasePresenter<T> {
 
-    void start();
+    void attach(T view);
 
-    void stop();
+    void detach();
 
 }

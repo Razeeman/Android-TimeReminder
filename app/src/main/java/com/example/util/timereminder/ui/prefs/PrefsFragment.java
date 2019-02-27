@@ -4,11 +4,15 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.example.util.timereminder.App;
 import com.example.util.timereminder.R;
 import com.example.util.timereminder.ui.prefs.custom.DatePreferenceDialogFragment;
 import com.example.util.timereminder.ui.prefs.custom.DatePreference;
 import com.example.util.timereminder.ui.prefs.custom.CustomEditTextPreferenceDialogFragmentCompat;
 
+import javax.inject.Inject;
+
+import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
@@ -24,7 +28,8 @@ public class PrefsFragment extends PreferenceFragmentCompat
     private static final String DIALOG_FRAGMENT_TAG =
             "com.example.util.timereminder.ui.prefs.PrefsFragment.DIALOG";
 
-    private PrefsContract.Presenter mPresenter;
+    @Inject
+    PrefsContract.Presenter mPresenter;
 
     public PrefsFragment() {
         // Empty constructor.
@@ -35,8 +40,21 @@ public class PrefsFragment extends PreferenceFragmentCompat
     }
 
     @Override
-    public void setPresenter(PrefsContract.Presenter presenter) {
-        mPresenter = presenter;
+    public void onResume() {
+        super.onResume();
+        mPresenter.attach(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.detach();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        App.getAppComponent().inject(this);
     }
 
     @Override

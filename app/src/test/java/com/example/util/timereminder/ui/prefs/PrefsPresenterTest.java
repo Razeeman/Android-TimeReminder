@@ -22,14 +22,8 @@ public class PrefsPresenterTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        mPrefsPresenter = new PrefsPresenter(mPreferencesHelper, mView);
-    }
-
-    @Test
-    public void createPresenter_setsPresenter() {
-        mPrefsPresenter = new PrefsPresenter(mPreferencesHelper, mView);
-
-        verify(mView).setPresenter(mPrefsPresenter);
+        mPrefsPresenter = new PrefsPresenter(mPreferencesHelper);
+        mPrefsPresenter.attach(mView);
     }
 
     @Test

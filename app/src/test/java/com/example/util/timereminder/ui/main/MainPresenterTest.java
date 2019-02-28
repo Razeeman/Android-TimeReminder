@@ -10,11 +10,10 @@ import org.mockito.MockitoAnnotations;
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 public class MainPresenterTest {
-
-    // TODO tests are broken because dagger.
 
     @Mock private PreferencesHelper mPreferencesHelper;
     @Mock private MainContract.View mView;
@@ -25,14 +24,17 @@ public class MainPresenterTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        mMainPresenter = new MainPresenter(mPreferencesHelper, mView);
+        mMainPresenter = new MainPresenter(mPreferencesHelper);
+        mMainPresenter.attach(mView);
     }
 
     @Test
-    public void createPresenter_setsPresenter() {
-        mMainPresenter = new MainPresenter(mPreferencesHelper, mView);
+    public void viewAttach_callsLoadData(){
+        mMainPresenter.detach();
+        mMainPresenter.attach(mView);
 
-        verify(mView).setPresenter(mMainPresenter);
+        // First time then view attached, second time then we force load.
+        verify(mPreferencesHelper, times(2)).isSettingsSetUp();
     }
 
     @Test
@@ -40,8 +42,8 @@ public class MainPresenterTest {
         doReturn(false).when(mPreferencesHelper).isSettingsSetUp();
         mMainPresenter.loadData();
 
-        verify(mPreferencesHelper).isSettingsSetUp();
-        verify(mView).showNoDataAvailable();
+        // First time then view attached, second time then we force load.
+        verify(mView, times(2)).showNoDataAvailable();
     }
 
     @Test
@@ -49,7 +51,6 @@ public class MainPresenterTest {
         doReturn(true).when(mPreferencesHelper).isSettingsSetUp();
         mMainPresenter.loadData();
 
-        verify(mPreferencesHelper).isSettingsSetUp();
         verify(mView).showData();
     }
 
@@ -62,7 +63,6 @@ public class MainPresenterTest {
         doReturn(true).when(mPreferencesHelper).showYears();
         mMainPresenter.loadData();
 
-        verify(mPreferencesHelper).isSettingsSetUp();
         verify(mView).setDataVisibility(anyBoolean(), anyBoolean(), anyBoolean(), anyBoolean());
     }
 

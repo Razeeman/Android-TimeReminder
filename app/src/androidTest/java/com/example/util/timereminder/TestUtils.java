@@ -1,9 +1,11 @@
 package com.example.util.timereminder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.IBinder;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 
@@ -15,9 +17,11 @@ import org.hamcrest.TypeSafeMatcher;
 
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Root;
 import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import static androidx.test.espresso.Espresso.onView;
@@ -31,7 +35,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-public class TestUtils {
+@SuppressWarnings("SameParameterValue")
+class TestUtils {
     static void navigateToSettings() {
         onView(withId(R.id.menu_settings)).perform(click());
     }
@@ -76,14 +81,7 @@ public class TestUtils {
             @Override
             protected boolean matchesSafely(Root item) {
                 int type = item.getWindowLayoutParams().get().type;
-                if (type == WindowManager.LayoutParams.TYPE_TOAST) {
-                    IBinder windowToken = item.getDecorView().getWindowToken();
-                    IBinder appToken = item.getDecorView().getApplicationWindowToken();
-                    // windowToken == appToken means this window isn't contained by any other windows.
-                    // if it was a window for an activity, it would have TYPE_BASE_APPLICATION.
-                    return windowToken == appToken;
-                }
-                return false;
+                return type == WindowManager.LayoutParams.TYPE_TOAST;
             }
 
             @Override
@@ -91,5 +89,25 @@ public class TestUtils {
                 description.appendText("is toast");
             }
         };
+    }
+
+    static <T extends Activity> void rotateOrientation (ActivityScenarioRule<T> activityScenarioRule) {
+        activityScenarioRule.getScenario().onActivity(new ActivityScenario.ActivityAction<T>() {
+            @Override
+            public void perform(T activity) {
+                rotateOrientation(activity);
+            }
+        });
+
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+    }
+
+    private static void rotateOrientation(Activity activity) {
+        int currentOrientation = activity.getResources().getConfiguration().orientation;
+        final int newOrientation = (currentOrientation == Configuration.ORIENTATION_PORTRAIT) ?
+                ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE :
+                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+
+        activity.setRequestedOrientation(newOrientation);
     }
 }

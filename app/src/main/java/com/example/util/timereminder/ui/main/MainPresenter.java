@@ -1,13 +1,17 @@
 package com.example.util.timereminder.ui.main;
 
+import android.annotation.SuppressLint;
+
 import com.example.util.timereminder.data.prefs.PreferencesHelper;
 import com.example.util.timereminder.utils.AppStringUtils;
 import com.example.util.timereminder.utils.AppTimeUtils;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
-import androidx.annotation.VisibleForTesting;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Receives commands from UI, retrieves data from preferences and updates the UI.
@@ -17,7 +21,7 @@ public class MainPresenter implements MainContract.Presenter {
     private final PreferencesHelper mPreferencesHelper;
     private MainContract.View mMainFragment;
 
-    private Timer mTimer;
+    private Disposable mDisposable;
 
     public MainPresenter(PreferencesHelper preferencesHelper) {
         mPreferencesHelper = preferencesHelper;
@@ -64,31 +68,32 @@ public class MainPresenter implements MainContract.Presenter {
     /**
      * Starts the cyclic timer to update data.
      */
+    @SuppressLint("CheckResult")
     private void startTimer() {
-        mTimer = new Timer();
-        mTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                loadTimeData();
-            }
-        }, 0, 1000);
+        loadTimeData();
+        // TODO should be in the view?
+        mDisposable = Observable
+                .interval(1, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) {
+                        loadTimeData();
+                    }
+                });
     }
 
     /**
      * Stops the timer.
      */
     private void stopTimer() {
-        if (mTimer != null) {
-            mTimer.cancel();
-            mTimer.purge();
-        }
+        mDisposable.dispose();
     }
 
     /**
      * Prepares data and updates the UI.
      */
-    @VisibleForTesting
-    public void loadTimeData() {
+    void loadTimeData() {
         mMainFragment.updateCurrentTime(getFullDateString());
 
         long expirationDateUTC = mPreferencesHelper.getDateOfDeathUTC();

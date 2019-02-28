@@ -1,6 +1,6 @@
 package com.example.util.timereminder.ui.prefs;
 
-import com.example.util.timereminder.data.prefs.PreferencesHelper;
+import com.example.util.timereminder.data.prefs.BasePreferencesHelper;
 
 /**
  * Receives commands from UI, retrieves data from preferences and updates the UI.
@@ -8,10 +8,10 @@ import com.example.util.timereminder.data.prefs.PreferencesHelper;
 public class PrefsPresenter implements PrefsContract.Presenter{
 
     // Can be used later.
-    private final PreferencesHelper mPreferencesHelper;
+    private final BasePreferencesHelper mPreferencesHelper;
     private PrefsContract.View mPrefsFragment;
 
-    public PrefsPresenter(PreferencesHelper preferencesHelper) {
+    public PrefsPresenter(BasePreferencesHelper preferencesHelper) {
         mPreferencesHelper = preferencesHelper;
     }
 

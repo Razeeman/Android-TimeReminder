@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 
 import com.example.util.timereminder.App;
+import com.example.util.timereminder.data.prefs.BasePreferencesHelper;
 import com.example.util.timereminder.data.prefs.PreferencesHelper;
 import com.example.util.timereminder.ui.main.MainContract;
 import com.example.util.timereminder.ui.main.MainPresenter;
@@ -47,7 +48,20 @@ public class AppModule {
         return mAppContext.getResources();
     }
 
+    @Provides
+    @Singleton
+    @Named("MainThread")
+    public Scheduler getSchedulerMainThread() {
+        return AndroidSchedulers.mainThread();
+    }
+
     // TODO which is better Provides or constructor Inject?
+    @Provides
+    @Singleton
+    public BasePreferencesHelper getBasePreferenceHelper(PreferencesHelper preferencesHelper) {
+        return preferencesHelper;
+    }
+
     @Provides
     @Singleton
     public PreferencesHelper getPreferenceHelper(SharedPreferences preferences, Resources resources) {
@@ -56,27 +70,20 @@ public class AppModule {
 
     @Provides
     @Singleton
-    @Named("MainThread")
-    public Scheduler getSchedulerMainThread() {
-        return AndroidSchedulers.mainThread();
-    }
-
-    @Provides
-    @Singleton
-    public MainContract.Presenter getMainPresenterInterface(MainPresenter mainPresenter) {
+    public MainContract.Presenter getBaseMainPresenter(MainPresenter mainPresenter) {
         return mainPresenter;
     }
 
     @Provides
     @Singleton
     public MainPresenter getMainPresenter(
-            PreferencesHelper preferencesHelper, @Named("MainThread") Scheduler scheduler) {
+            BasePreferencesHelper preferencesHelper, @Named("MainThread") Scheduler scheduler) {
         return new MainPresenter(preferencesHelper, scheduler);
     }
 
     @Provides
     @Singleton
-    public PrefsContract.Presenter getPrefsPresenterInterface(PrefsPresenter prefsPresenter) {
+    public PrefsContract.Presenter getBasePrefsPresenter(PrefsPresenter prefsPresenter) {
         return prefsPresenter;
     }
 

@@ -2,7 +2,7 @@ package com.example.util.timereminder.ui.main;
 
 import android.annotation.SuppressLint;
 
-import com.example.util.timereminder.data.prefs.PreferencesHelper;
+import com.example.util.timereminder.data.prefs.BasePreferencesHelper;
 import com.example.util.timereminder.utils.AppStringUtils;
 import com.example.util.timereminder.utils.AppTimeUtils;
 
@@ -10,7 +10,6 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
@@ -19,13 +18,13 @@ import io.reactivex.functions.Consumer;
  */
 public class MainPresenter implements MainContract.Presenter {
 
-    private final PreferencesHelper mPreferencesHelper;
+    private final BasePreferencesHelper mPreferencesHelper;
     private final Scheduler mScheduler;
     private MainContract.View mMainFragment;
 
     private Disposable mDisposable;
 
-    public MainPresenter(PreferencesHelper preferencesHelper, Scheduler scheduler) {
+    public MainPresenter(BasePreferencesHelper preferencesHelper, Scheduler scheduler) {
         mPreferencesHelper = preferencesHelper;
         mScheduler = scheduler;
     }

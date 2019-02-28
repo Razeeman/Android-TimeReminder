@@ -9,6 +9,7 @@ import com.example.util.timereminder.utils.AppTimeUtils;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -19,12 +20,14 @@ import io.reactivex.functions.Consumer;
 public class MainPresenter implements MainContract.Presenter {
 
     private final PreferencesHelper mPreferencesHelper;
+    private final Scheduler mScheduler;
     private MainContract.View mMainFragment;
 
     private Disposable mDisposable;
 
-    public MainPresenter(PreferencesHelper preferencesHelper) {
+    public MainPresenter(PreferencesHelper preferencesHelper, Scheduler scheduler) {
         mPreferencesHelper = preferencesHelper;
+        mScheduler = scheduler;
     }
 
     @Override
@@ -71,10 +74,9 @@ public class MainPresenter implements MainContract.Presenter {
     @SuppressLint("CheckResult")
     private void startTimer() {
         loadTimeData();
-        // TODO should be in the view?
         mDisposable = Observable
                 .interval(1, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(mScheduler)
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) {
@@ -87,7 +89,9 @@ public class MainPresenter implements MainContract.Presenter {
      * Stops the timer.
      */
     private void stopTimer() {
-        mDisposable.dispose();
+        if (mDisposable != null) {
+            mDisposable.dispose();
+        }
     }
 
     /**

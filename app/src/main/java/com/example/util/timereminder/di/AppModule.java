@@ -11,11 +11,14 @@ import com.example.util.timereminder.ui.main.MainPresenter;
 import com.example.util.timereminder.ui.prefs.PrefsContract;
 import com.example.util.timereminder.ui.prefs.PrefsPresenter;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import androidx.preference.PreferenceManager;
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 @Module
 public class AppModule {
@@ -53,14 +56,22 @@ public class AppModule {
 
     @Provides
     @Singleton
+    @Named("MainThread")
+    public Scheduler getSchedulerMainThread() {
+        return AndroidSchedulers.mainThread();
+    }
+
+    @Provides
+    @Singleton
     public MainContract.Presenter getMainPresenterInterface(MainPresenter mainPresenter) {
         return mainPresenter;
     }
 
     @Provides
     @Singleton
-    public MainPresenter getMainPresenter(PreferencesHelper preferencesHelper) {
-        return new MainPresenter(preferencesHelper);
+    public MainPresenter getMainPresenter(
+            PreferencesHelper preferencesHelper, @Named("MainThread") Scheduler scheduler) {
+        return new MainPresenter(preferencesHelper, scheduler);
     }
 
     @Provides

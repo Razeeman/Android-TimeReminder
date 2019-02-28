@@ -3,9 +3,13 @@ package com.example.util.timereminder.ui.main;
 import com.example.util.timereminder.data.prefs.PreferencesHelper;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import io.reactivex.Scheduler;
+import io.reactivex.schedulers.TestScheduler;
 
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -19,12 +23,18 @@ public class MainPresenterTest {
     @Mock private MainContract.View mView;
 
     private MainPresenter mMainPresenter;
+    private static Scheduler mScheduler;
+
+    @BeforeClass
+    public static void before() {
+        mScheduler = new TestScheduler();
+    }
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        mMainPresenter = new MainPresenter(mPreferencesHelper);
+        mMainPresenter = new MainPresenter(mPreferencesHelper, mScheduler);
         mMainPresenter.attach(mView);
     }
 
@@ -82,7 +92,7 @@ public class MainPresenterTest {
     @Test
     public void loadTimeData_updatesUI() {
         doReturn(true).when(mPreferencesHelper).isSettingsSetUp();
-        mMainPresenter.loadTimeData();
+        mMainPresenter.loadData();
 
         verify(mPreferencesHelper).getDateOfDeathUTC();
         verify(mView).updateTimes(anyString(), anyString(), anyString(), anyString(), anyString());

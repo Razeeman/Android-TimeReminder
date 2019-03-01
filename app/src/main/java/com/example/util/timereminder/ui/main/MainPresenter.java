@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
 /**
  * Receives commands from UI, retrieves data from preferences and updates the UI.
@@ -76,12 +75,7 @@ public class MainPresenter implements MainContract.Presenter {
         mDisposable = Observable
                 .interval(1, TimeUnit.SECONDS)
                 .observeOn(mScheduler)
-                .subscribe(new Consumer<Long>() {
-                    @Override
-                    public void accept(Long aLong) {
-                        loadTimeData();
-                    }
-                });
+                .subscribe(aLong -> loadTimeData());
     }
 
     /**

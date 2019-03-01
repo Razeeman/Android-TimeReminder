@@ -104,12 +104,7 @@ public class MainFragment extends Fragment implements MainContract.View {
     public void updateCurrentTime(final String timeNow) {
         if (getActivity() == null) return;
 
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mTimeNowTextView.setText(timeNow);
-            }
-        });
+        getActivity().runOnUiThread(() -> mTimeNowTextView.setText(timeNow));
     }
 
     /**
@@ -127,15 +122,12 @@ public class MainFragment extends Fragment implements MainContract.View {
 
         final int color = getActivity().getResources().getColor(R.color.colorAccent);
 
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                mSecondsLeftTextView.setText(AppStringUtils.recolorLastDigit(color, s));
-                mMinutesLeftTextView.setText(m);
-                mHoursLeftTextView.setText(h);
-                mDaysLeftTextView.setText(d);
-                mYearsLeftTextView.setText(y);
-            }
+        getActivity().runOnUiThread(() -> {
+            mSecondsLeftTextView.setText(AppStringUtils.recolorLastDigit(color, s));
+            mMinutesLeftTextView.setText(m);
+            mHoursLeftTextView.setText(h);
+            mDaysLeftTextView.setText(d);
+            mYearsLeftTextView.setText(y);
         });
 
     }

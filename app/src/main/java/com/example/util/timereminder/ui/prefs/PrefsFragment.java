@@ -134,14 +134,11 @@ public class PrefsFragment extends PreferenceFragmentCompat
         if (p instanceof DatePreference) {
             p.setSummaryProvider(DatePreference.SimpleSummaryProvider.getInstance());
         } else if (p instanceof EditTextPreference) {
-            p.setSummaryProvider(new Preference.SummaryProvider<EditTextPreference>() {
-                @Override
-                public CharSequence provideSummary(EditTextPreference preference) {
-                    if (TextUtils.isEmpty(preference.getText())) {
-                        return (preference.getContext().getString(R.string.prefs_not_set));
-                    } else {
-                        return preference.getText();
-                    }
+            p.setSummaryProvider((Preference.SummaryProvider<EditTextPreference>) preference -> {
+                if (TextUtils.isEmpty(preference.getText())) {
+                    return (preference.getContext().getString(R.string.prefs_not_set));
+                } else {
+                    return preference.getText();
                 }
             });
         }

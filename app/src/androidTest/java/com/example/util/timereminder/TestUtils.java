@@ -17,7 +17,6 @@ import org.hamcrest.TypeSafeMatcher;
 
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Root;
 import androidx.test.espresso.contrib.PickerActions;
 import androidx.test.espresso.contrib.RecyclerViewActions;
@@ -92,12 +91,7 @@ class TestUtils {
     }
 
     static <T extends Activity> void rotateOrientation (ActivityScenarioRule<T> activityScenarioRule) {
-        activityScenarioRule.getScenario().onActivity(new ActivityScenario.ActivityAction<T>() {
-            @Override
-            public void perform(T activity) {
-                rotateOrientation(activity);
-            }
-        });
+        activityScenarioRule.getScenario().onActivity(TestUtils::rotateOrientation);
 
         InstrumentationRegistry.getInstrumentation().waitForIdleSync();
     }

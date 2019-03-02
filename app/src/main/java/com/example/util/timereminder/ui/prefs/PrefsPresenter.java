@@ -2,6 +2,8 @@ package com.example.util.timereminder.ui.prefs;
 
 import com.example.util.timereminder.data.prefs.BasePreferencesHelper;
 
+import javax.inject.Inject;
+
 /**
  * Receives commands from UI, retrieves data from preferences and updates the UI.
  */
@@ -11,6 +13,7 @@ public class PrefsPresenter implements PrefsContract.Presenter{
     private final BasePreferencesHelper mPreferencesHelper;
     private PrefsContract.View mPrefsFragment;
 
+    @Inject
     public PrefsPresenter(BasePreferencesHelper preferencesHelper) {
         mPreferencesHelper = preferencesHelper;
     }

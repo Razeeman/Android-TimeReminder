@@ -8,13 +8,18 @@ import com.example.util.timereminder.utils.AppTimeUtils;
 
 import java.util.Date;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import androidx.annotation.VisibleForTesting;
 
+@Singleton
 public class PreferencesHelper implements BasePreferencesHelper {
 
     private final SharedPreferences mSharedPreferences;
     private final Resources mResources;
 
+    @Inject
     public PreferencesHelper(SharedPreferences sharedPreferences, Resources resources) {
         mSharedPreferences = sharedPreferences;
         mResources = resources;

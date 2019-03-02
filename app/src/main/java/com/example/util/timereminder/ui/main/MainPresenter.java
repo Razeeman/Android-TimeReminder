@@ -8,6 +8,9 @@ import com.example.util.timereminder.utils.AppTimeUtils;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 import io.reactivex.disposables.Disposable;
@@ -23,7 +26,9 @@ public class MainPresenter implements MainContract.Presenter {
 
     private Disposable mDisposable;
 
-    public MainPresenter(BasePreferencesHelper preferencesHelper, Scheduler scheduler) {
+    @Inject
+    public MainPresenter(BasePreferencesHelper preferencesHelper,
+                         @Named("MainThread")Scheduler scheduler) {
         mPreferencesHelper = preferencesHelper;
         mScheduler = scheduler;
     }

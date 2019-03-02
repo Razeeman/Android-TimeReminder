@@ -55,7 +55,6 @@ public class AppModule {
         return AndroidSchedulers.mainThread();
     }
 
-    // TODO which is better Provides or constructor Inject?
     @Provides
     @Singleton
     public BasePreferencesHelper getBasePreferenceHelper(PreferencesHelper preferencesHelper) {
@@ -63,34 +62,13 @@ public class AppModule {
     }
 
     @Provides
-    @Singleton
-    public PreferencesHelper getPreferenceHelper(SharedPreferences preferences, Resources resources) {
-        return new PreferencesHelper(preferences, resources);
-    }
-
-    @Provides
-    @Singleton
     public MainContract.Presenter getBaseMainPresenter(MainPresenter mainPresenter) {
         return mainPresenter;
     }
 
     @Provides
-    @Singleton
-    public MainPresenter getMainPresenter(
-            BasePreferencesHelper preferencesHelper, @Named("MainThread") Scheduler scheduler) {
-        return new MainPresenter(preferencesHelper, scheduler);
-    }
-
-    @Provides
-    @Singleton
     public PrefsContract.Presenter getBasePrefsPresenter(PrefsPresenter prefsPresenter) {
         return prefsPresenter;
-    }
-
-    @Provides
-    @Singleton
-    public PrefsPresenter getPrefsPresenter(PreferencesHelper preferencesHelper) {
-        return new PrefsPresenter(preferencesHelper);
     }
 
 }

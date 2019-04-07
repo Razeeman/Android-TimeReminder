@@ -2,6 +2,18 @@
 
 Very simple two screen app that shows how much time is left until you reach average life expectancy. Have fun!
 
+## Index
+- Java8
+- Kotlin
+- Androidx
+- MVP
+- Dagger
+- RxJava
+- PreferenceFragment
+- Custom DatePreference
+- Unit/UI tests
+- Proguard.
+
 ## Screenshots
 
 [![Main Screen][screen1th]][screen1]

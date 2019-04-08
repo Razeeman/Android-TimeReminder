@@ -1,8 +1,8 @@
-# Android-TimeReminder
+# TimeReminder
 
 Very simple two screen app that shows how much time is left until you reach average life expectancy. Have fun!
 
-## Index
+## Technology stack
 - Java8
 - Kotlin
 - Androidx

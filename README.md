@@ -2,6 +2,8 @@
 
 Very simple two screen app that shows how much time is left until you reach average life expectancy. Have fun!
 
+[Download](dev_files/app-debug.apk)
+
 ## Technology stack
 - Java8
 - Kotlin
